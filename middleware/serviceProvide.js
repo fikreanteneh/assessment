@@ -2,7 +2,7 @@ class Database {
   db = [];
 
   Add(data) {
-    data.id = data.length;
+    data.id = data.length ?? 0;
     this.db.push(data);
     return data;
   }
@@ -37,11 +37,11 @@ class Database {
   }
 }
 
-let this.db;
+let database;
 
 export function provideDatabase() {
-  if (this.db == null) {
-    this.db = new Database();
+  if (database == null) {
+    database = new Database();
   }
-  return this.db;
+  return database;
 }

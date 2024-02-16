@@ -1,9 +1,9 @@
 import { provideDatabase } from "../middleware/serviceProvide.js";
 
 export const GetTask = async (req, res, next) => {
-    const db = provideDatabase();
-    console.log("Yessssss")
-    return res.status(200).json({ "tasks": db.GetAll() });
+  const db = provideDatabase();
+  console.log("Yessssss");
+  return res.status(200).json({ tasks: db.GetAll() });
 };
 export const GetTaskById = async (req, res, next) => {
   const db = provideDatabase();
@@ -22,7 +22,8 @@ export const DeleteTask = async (req, res, next) => {
 };
 export const UpdateTask = async (req, res, next) => {
   const db = provideDatabase();
+  console.log(db.GetAll());
   const id = req.param.id;
   const data = req.body;
-  return res.status(200).json(db.UpdateTask(id, data));
+  return res.status(200).json(db.Update(id, data));
 };
