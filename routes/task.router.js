@@ -5,14 +5,16 @@ import {
   GetTask,
   GetTaskById,
   UpdateTask,
-} from "../controllers/task.controller";
+} from "../controllers/task.controller.js";
+
+import CatchError from './../middleware/catchError.js';
 
 const taskRouter = express.Router();
 
-taskRouter.get("/", GetTask);
-taskRouter.get("/:id", GetTaskById);
-taskRouter.post("", AddTask);
-taskRouter.put("/:id", UpdateTask);
-taskRouter.delete("/:id", DeleteTask);
+taskRouter.get("/", CatchError(GetTask));
+taskRouter.get("/:id", CatchError(GetTaskById));
+taskRouter.post("", CatchError(AddTask));
+taskRouter.put("/:id", CatchError(UpdateTask));
+taskRouter.delete("/:id", CatchError(DeleteTask));
 
 export default taskRouter;

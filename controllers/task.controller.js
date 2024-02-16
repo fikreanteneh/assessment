@@ -1,4 +1,4 @@
-import { provideDatabase } from "../middleware/serviceProvide";
+import { provideDatabase } from "../middleware/serviceProvide.js";
 
 export const GetTask = async (req, res, next) => {
   const db = provideDatabase();

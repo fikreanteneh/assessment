@@ -1,33 +1,44 @@
-
 class Database {
   db = [];
 
   Add(data) {
+    data.id = data.length;
     db.push(data);
   }
 
   Delete(id) {
-      db = db.filter
-    }
-    
-    Update(data) {
-        
-    } 
-    GetAll()  {
-    
-}
-    GetById() {
-    
-    }
-    
+    const length = db.length;
+    db = db.filter((data) => data.id != id);
+    if (db.length == length) throw new Error("Resource Not Found");
+  }
 
+  Update(id, data) {
+    let index;
+    for (let i = 0; i < data.length; i++) {
+      if (db[i].id == id) {
+        index = i;
+        break;
+      }
+    }
+    if (index == null) throw new Error("Resource Not FOund");
+    db[index] = data;
+  }
+
+  GetAll() {
+    return db;
+  }
+  GetById(id) {
+    const data = db.filter((data) => data.id == id);
+    if (data.length == 0) throw new Error("Resource Not Found");
+    return data[0];
+  }
 }
 
 let db;
 
 export function provideDatabase() {
-    if (db == null) {
-        db = new Database()
-    }
-    return db;
-} 
+  if (db == null) {
+    db = new Database();
+  }
+  return db;
+}
