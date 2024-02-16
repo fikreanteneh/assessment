@@ -4,12 +4,14 @@ class Database {
   Add(data) {
     data.id = data.length;
     db.push(data);
+    return data;
   }
 
   Delete(id) {
     const length = db.length;
     db = db.filter((data) => data.id != id);
     if (db.length == length) throw new Error("Resource Not Found");
+    return {};
   }
 
   Update(id, data) {
@@ -22,6 +24,7 @@ class Database {
     }
     if (index == null) throw new Error("Resource Not FOund");
     db[index] = data;
+    return db[index];
   }
 
   GetAll() {

@@ -1,8 +1,9 @@
 import { provideDatabase } from "../middleware/serviceProvide.js";
 
 export const GetTask = async (req, res, next) => {
-  const db = provideDatabase();
-  return res.status(200).json(db.GetAll());
+    const db = provideDatabase();
+    console.log("Yessssss")
+    return res.status(200).json({ "tasks": db.GetAll() });
 };
 export const GetTaskById = async (req, res, next) => {
   const db = provideDatabase();
